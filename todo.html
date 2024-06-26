@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo</title>
+    <style>
+        body{
+            padding: 0px;
+            margin: 0px 0px;
+            height: 100svh;
+            width: 100svw;
+            overflow: hidden;
+        }
+
+        .add{
+            display: flex;
+            height: 8svh;
+            width: 20em;
+            background-color: orange;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            margin: 10svh auto;
+        }
+
+        .add input{
+            width: 70%;
+            height: 60%;
+            border-radius: 20px 0px 0px 20px;
+            border: none;
+            font-size: 1.3 em;
+            letter-spacing: 1.5px;
+        }
+                
+        .add button{
+            height: 63%;
+            width:fit-content;
+            border: none;
+            border-radius: 0px 20px 20px 0px;
+           background-color: blueviolet;
+           color: white;
+           font-size: 1.2em;
+           font-family:'Times New Roman', Times, serif;
+           cursor: pointer;
+        }
+
+       #list{
+        height: auto;
+        width: 25em;
+        background-color: rgb(67, 66, 64);
+        margin: 0 auto;
+        border-radius: 20px;
+       
+      
+        
+       } 
+        .it{
+            display: flex;
+            width: 70%;
+            height: 20px;
+            background-color: white;
+            font-size: 1em;
+            
+            margin: 5px auto;
+            border-radius: 5px;
+        }
+
+        .it:hover{
+            box-shadow: 0px 0px 1px 2px yellow;
+        }
+
+        .it #itl{
+             height: 100%;
+             width: 10%;
+             
+        }
+
+        .it #itm{
+             height: 100%;
+             width: 65%;
+             
+             
+        }
+
+        .it #itr{
+             height: 100%;
+             width: 25%;
+            
+        }
+
+        #itl,#itr{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+       
+        #del{
+         
+            background-color: red;
+            height: 80%;
+            width: auto;
+            margin-left: 5px;
+            
+        }
+        #ed{
+        
+            background-color: rgb(234, 255, 0);
+            height: 80%;
+            width: auto;
+        
+            
+        }
+
+        #del,#ed,.it input{
+            cursor: pointer;
+        }
+
+        /* design */
+         #d1, #d2, #d3{
+            position: absolute;
+            z-index: -2;
+         }
+         #d1{
+            width: calc(10svw + 10svh);
+            height: calc(10svw + 10svh);
+            background-image: radial-gradient(rgb(247, 247, 83),rgb(109, 247, 54),rgb(95, 165, 250));
+            border-radius: 50%;
+            margin: -10svh -5svw;
+            scale: 1.5;
+            opacity: 0.5;
+         }
+         #d2{
+            width: calc(10svw + 10svh);
+            height: calc(10svw + 10svh);
+            background-image: linear-gradient(25deg, rgb(238, 153, 100) ,rgb(98, 131, 240),purple);
+            border-radius: 20px;
+            margin: 70svh 85svw;
+            opacity: 0.5;
+            scale: 1.5;
+            animation: d2 20s 0s infinite forwards ease;
+         }
+
+         #d3{
+            width: calc(5svw + 5svh);
+            height: calc(5svw + 5svh);
+            background-color: greenyellow;
+            border-radius: 0px 30px 0px 30px;
+            margin: 5svh 0svw;
+            animation: d3 15s 0s infinite forwards ease;
+            z-index: -5;
+            opacity: 0.5;
+            scale: 0.5;
+         }
+         
+         @keyframes d2 {
+            0%{
+                   rotate: 0deg;
+            }
+            100%{
+                  rotate: 360deg;
+            }
+         }
+         
+         @keyframes d3 {
+            0%{
+                   margin: 5svh 0svw;
+            }
+            100%{
+                  margin:90svh 30svw;
+            }
+         }
+    </style>
+    <style>
+        @media screen and (max-width: 480px){
+            .add{
+                display: flex;
+                height: 10svh;
+                width: 75svw;
+                background-color: orange;
+                align-items: center;
+                justify-content: center;
+                border-radius: 20px;
+                margin: 15svh auto;
+            }
+            #list{
+                width: 75svw;
+                height: auto;
+            }
+
+            #d1{
+                margin: -18svh -7svw;
+            }
+
+            #d2{
+                margin: 70svh 80svw;
+            }
+
+            @keyframes d3 {
+                0%{
+                       margin: 0svh 0svw;
+                }
+                100%{
+                      margin:90svh 30svw;
+                }
+             }
+        }
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+    <div id="d2"></div>
+    <div id="d3"></div>
+    <div class="add"><input type="text" name="item" id="i"><button type="submit" onclick="add()">Add</button></div>
+
+    <div id="list">
+
+    </div>
+
+   
+    <script>
+        let input = document.getElementById('i');
+        let list = document.getElementById('list');
+       function add()
+       {
+        if(input.value!="")
+        {
+            list.style.paddingTop="5px";
+            list.style.paddingBottom="5px";
+            list.style. boxShadow=" 0px 0px 4px 3px rgb(221, 100, 232)";
+            var a=document.createElement("div");
+            a.classList.add("it");
+            var itl=document.createElement("div");
+            var itm=document.createElement("div");
+            var itr=document.createElement("div");
+    
+            itl.id="itl";
+            itm.id="itm";
+            itr.id="itr";
+    
+            
+            //elements of todo
+            var textn=document.createTextNode(input.value);
+    
+            var b=document.createElement("input");
+            b.type="checkbox";
+    
+            var c = document.createElement("button");
+            var d = document.createElement("button");
+            c.id="ed";
+            d.id="del";
+            c.textContent="i";
+            d.style.backgroundImage="url(close.png)";
+            d.style.backgroundSize="cover";
+            itl.appendChild(b);
+            itm.appendChild(textn);
+            itr.appendChild(c);
+            itr.appendChild(d);
+    
+    
+    
+            a.appendChild(itl);
+            a.appendChild(itm);
+            a.appendChild(itr);
+            list.appendChild(a);
+    
+            c.addEventListener("click",function(){
+                var ne=prompt();
+                if(ne!="")
+                 textn.textContent=ne;
+            });
+    
+            d.addEventListener("click",function(){
+                list.removeChild(a);
+            });
+
+            b.addEventListener("click",function(){
+                if(b.checked)
+                {
+                    itm.style.textDecoration="line-through";
+                }
+                else
+                {
+                    itm.style.textDecoration="none";
+                }
+                
+            });
+        }
+       
+       }
+
+       
+    </script>
+</body>
+</html>
